@@ -18,8 +18,10 @@ public class Product {
     private Long id;
 
     private String title;
+
     @Column(name = "product_detail")
     private String productDetail;
+
     private double price;
     private int quantity;
 
