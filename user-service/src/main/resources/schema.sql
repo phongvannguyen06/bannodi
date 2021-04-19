@@ -1,7 +1,7 @@
-/* Script for creating User table */
 DROP TABLE IF EXISTS `bannodidb`.`address`;
 DROP TABLE IF EXISTS `bannodidb`.`user`;
 
+/* Script for creating User table */
 CREATE TABLE `bannodidb`.`user`
 (
     `id`                     INT         NOT NULL AUTO_INCREMENT,
@@ -26,7 +26,7 @@ CREATE TABLE `bannodidb`.`address`
     `state`    VARCHAR(2)   NOT NULL,
     `zip_code` VARCHAR(10)  NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `fk_da_user`
+    CONSTRAINT `fk_address_user`
         FOREIGN KEY (`user_id`)
             REFERENCES `bannodidb`.`user` (`id`)
 );

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,5 +26,8 @@ public class User {
 
     @Column(name = "password_salted_hashed")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses;
 
 }
