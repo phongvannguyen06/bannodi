@@ -9,8 +9,8 @@ CREATE TABLE `bannodidb`.`product`
     `product_detail` VARCHAR(255)  NULL,
     `price`          DECIMAL(7, 2) NOT NULL DEFAULT 0,
     `quantity`       INT           NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    CONSTRAINT `fk_product_user`
-        FOREIGN KEY (`user_id`)
-            REFERENCES `bannodidb`.`user` (`id`)
+    PRIMARY KEY (`id`)
+--     CONSTRAINT `fk_product_user`
+--         FOREIGN KEY (`user_id`)
+--             REFERENCES `bannodidb`.`user` (`id`)
 );
