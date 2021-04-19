@@ -23,15 +23,29 @@ public class ProductService {
         return productRepo.findAll();
     }
 
-    public Product addProduct(Product newProduct) {
-        return productRepo.save(newProduct);
+    public List<Product> getAllProductsOfUser(long userId) {
+        return productRepo.findAllByUserId(userId);
     }
 
-    public Product getProduct(long id) {
-        return productRepo.findById(id).get();
+    public Product getProduct(long productId) {
+        return productRepo.findById(productId).get();
+    }
+
+    public Product updateProductOfUser(long productId, Product updatedProduct) {
+        updatedProduct.setId(productId);
+        return productRepo.save(updatedProduct);
+    }
+
+    public Product addProduct(Product newProduct) {
+        return productRepo.save(newProduct);
     }
 
     public void deleteProduct(long id) {
         productRepo.deleteById(id);
     }
+
+    public void deleteProductOfUser(long userId, long productId) {
+        productRepo.deleteProductByUserIdAndId(userId, productId);
+    }
+
 }

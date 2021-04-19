@@ -23,18 +23,34 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Product> getAllProductsOfUser(@PathVariable("userId") long userId) {
+        return productService.getAllProductsOfUser(userId);
+    }
+
+    @GetMapping("/{productId}")
+    public Product getProduct(@PathVariable("productId") long productId) {
+        return productService.getProduct(productId);
+    }
+
+    @PutMapping("/{productId}")
+    public Product updatedProductOfUser(@PathVariable("productId") long productId, @RequestBody Product product) {
+        return productService.updateProductOfUser(productId, product);
+    }
+
     @PostMapping()
     public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
 
-    @GetMapping("/{id}")
-    public Product getProduct(@PathVariable("id") long id) {
-        return productService.getProduct(id);
+    @DeleteMapping("/{productId}")
+    public void deleteProduct(@PathVariable("productId") long productId) {
+        productService.deleteProduct(productId);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable("id") long id) {
-        productService.deleteProduct(id);
+    @DeleteMapping("/{productId}/user/{userId}")
+    public void deleteProductOfUser(@PathVariable("productId") long productId, @PathVariable("userId") long userId) {
+        productService.deleteProductOfUser(userId, productId);
     }
+
 }
