@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-k8s-product-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: docker-k8s-product-service
+  template:
+    metadata:
+      labels:
+        app: docker-k8s-product-service
+    spec:
+      serviceAccountName: product-service
+      containers:
+        - name: docker-k8s-product-service
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cred-secrets
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: cred-secrets
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: cred-secrets
+                  key: database
+          image: gooddeveloper/product-service
+          ports:
+            - containerPort: 8080
+        - name: cloud-sql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.17
+          command:
+            - "/cloud_sql_proxy"
+            - "-instances=bannodi-sql-instance=tcp:0.0.0.0:3306"
+          securityContext:
+            runAsNonRoot: true

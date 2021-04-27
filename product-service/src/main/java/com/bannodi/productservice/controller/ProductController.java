@@ -23,11 +23,6 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/user/{userId}")
-    public List<Product> getAllProductsOfUser(@PathVariable("userId") long userId) {
-        return productService.getAllProductsOfUser(userId);
-    }
-
     @GetMapping("/{productId}")
     public Product getProduct(@PathVariable("productId") long productId) {
         return productService.getProduct(productId);
@@ -46,11 +41,6 @@ public class ProductController {
     @DeleteMapping("/{productId}")
     public void deleteProduct(@PathVariable("productId") long productId) {
         productService.deleteProduct(productId);
-    }
-
-    @DeleteMapping("/{productId}/user/{userId}")
-    public void deleteProductOfUser(@PathVariable("productId") long productId, @PathVariable("userId") long userId) {
-        productService.deleteProductOfUser(userId, productId);
     }
 
 }

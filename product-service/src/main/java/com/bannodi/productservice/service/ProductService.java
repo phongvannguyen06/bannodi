@@ -23,10 +23,6 @@ public class ProductService {
         return productRepo.findAll();
     }
 
-    public List<Product> getAllProductsOfUser(long userId) {
-        return productRepo.findAllByUserId(userId);
-    }
-
     public Product getProduct(long productId) {
         return productRepo.findById(productId).get();
     }
@@ -42,10 +38,6 @@ public class ProductService {
 
     public void deleteProduct(long id) {
         productRepo.deleteById(id);
-    }
-
-    public void deleteProductOfUser(long userId, long productId) {
-        productRepo.deleteProductByUserIdAndId(userId, productId);
     }
 
 }
